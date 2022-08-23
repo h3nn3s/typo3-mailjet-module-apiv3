@@ -3,11 +3,10 @@
 namespace Api\Mailjet\Domain\Model\Dto;
 
 use Api\Mailjet\Exception\ApiKeyMissingException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Api\Mailjet\Service\ApiService;
 use DrewM\Mailjet\MailJet;
-use Api\Mailjet\Exception\GeneralException;
-use Api\Mailjet\Exception\InvalidInputException;
 
 class ExtensionConfigurationMailjet {
 
@@ -19,7 +18,7 @@ class ExtensionConfigurationMailjet {
 
   public function __construct() {
 
-    $settings = (array) unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = (array) GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
     foreach ($settings as $key => $value) {
       if (property_exists(__CLASS__, $key)) {
         $this->$key = $value;
@@ -28,10 +27,9 @@ class ExtensionConfigurationMailjet {
 
   }
 
-  /**
-   *
-   * @throws  Exception
-   */
+    /**
+     * @throws ApiKeyMissingException
+     */
   public function getApiData() {
     if ((empty($this->apiKeyMailjet) || empty($this->secretKey)) || (empty($this->apiKeyMailjet) && empty($this->secretKey))) {
       throw new ApiKeyMissingException('API key or Secret key is missing!');
@@ -47,9 +45,9 @@ class ExtensionConfigurationMailjet {
   public function syncConfigOptions() {
 
     $tracking_check = NULL;
-    $mailjetService = GeneralUtility::makeInstance('Api\\Mailjet\\Service\\ApiService');
+    $mailjetService = GeneralUtility::makeInstance(ApiService::class);
     $country_key = '';
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
 
     $mailjet = new Mailjet($this->apiKeyMailjet, $this->secretKey);
 

@@ -3,7 +3,6 @@
 namespace Api\Mailjet\Hooks\Frontend\Formhandler;
 
 use Api\Mailjet\Domain\Model\Dto\FormDto;
-use Api\Mailjet\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
@@ -21,7 +20,7 @@ class Mailjet extends \Tx_Formhandler_AbstractFinisher {
    */
   protected function getData() {
     /** @var FormDto $data */
-    $data = GeneralUtility::makeInstance('Api\\Mailjet\\Domain\\Model\\Dto\\FormDto');
+    $data = GeneralUtility::makeInstance(FormDto::class);
 
     $emailField = $this->utilityFuncs->getSingle($this->settings, 'fieldEmail');
     if ($emailField && $this->gp[$emailField]) {

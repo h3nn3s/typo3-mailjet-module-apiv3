@@ -2,9 +2,8 @@
 
 namespace Api\Mailjet\Service;
 
-use Api\Mailjet\Domain\Model\Dto\FormDto;
-use Api\Mailjet\Exception\GeneralException;
-use Api\Mailjet\Exception\MemberExistsException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Log\Logger;
@@ -28,10 +27,10 @@ class ApiService {
 
     /** @var \Api\Mailjet\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
     require_once(ExtensionManagementUtility::extPath('mailjet', 'Resources/Private/Contrib/Mailjet/Mailjet.php'));
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
     $this->api_mailjet = new Mailjet($settings['apiKeyMailjet'], $settings['secretKey']);
 
-    $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')
+    $this->logger = GeneralUtility::makeInstance(LogManager::class)
       ->getLogger(__CLASS__);
 
   }
@@ -277,7 +276,7 @@ class ApiService {
    */
   public function mailjet_admin_settings_tracking($form, &$form_state) {
 
-    $settings = (array) unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = (array) GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
     foreach ($settings as $key => $value) {
       if (property_exists(__CLASS__, $key)) {
         $this->$key = $value;

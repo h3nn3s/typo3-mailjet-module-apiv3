@@ -8,8 +8,8 @@ if (!defined('TYPO3_MODE')) {
   die ('Access denied.');
 }
 
-$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
-if ($settings['Send'] == 1 && $settings['sync_field'] == 'on') {
+$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('mailjet');
+if ($settings['Send'] == 1 && $settings['sync_field'] === 'on') {
 
   $host = "in-v3.mailjet.com";
   $smtpPort = 587;
@@ -37,19 +37,18 @@ else {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-  'Api.' . $_EXTKEY,
+  'Mailjet',
   'Registration',
   [
-    'Form' => 'index,response,ajaxResponse',
+    \Api\Mailjet\Controller\FormController::class => 'index,response,ajaxResponse',
   ],
   [
-    'Form' => 'index,response,ajaxResponse',
+    \Api\Mailjet\Controller\FormController::class => 'index,response,ajaxResponse',
   ]
 );
 
 
 if (TYPO3_MODE === 'BE') {
-  if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('7.0')) {
     /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
     $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
     $iconRegistry->registerIcon(
@@ -57,11 +56,10 @@ if (TYPO3_MODE === 'BE') {
       \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
       ['source' => 'EXT:mailjet/ext_icon.png']
     );
-  }
 
 
   // Page module hook
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$_EXTKEY . '_registration'][$_EXTKEY] =
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['mailjet' . '_registration']['mailjet'] =
     'Api\Mailjet\Hooks\Backend\PageLayoutViewHook->getExtensionSummary';
 
 

@@ -2,14 +2,15 @@
 
 namespace Api\Mailjet\Domain\Model\Dto;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class FormDto extends AbstractEntity {
 
   /**
    * @var string
-   * @validate NotEmpty
-   * @validate EmailAddress
+   * @Extbase\Validate("NotEmpty")
+   * @Extbase\Validate("EmailAddress")
    */
   protected $email;
 

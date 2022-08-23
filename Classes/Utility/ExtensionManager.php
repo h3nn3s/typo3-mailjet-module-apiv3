@@ -6,18 +6,19 @@
 
 namespace Mailjet\Ext;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Fab\Vidi\Configuration\ConfigurationUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use DrewM\Mailjet\MailJet;
-use Api\Mailjet\Service\ApiService;
-use \TYPO3\CMS\Core\Cache\CacheManager;
+use Api\Mailjet\Domain\Model\Dto\MailjetOptionsUpdater;
+use Api\Mailjet\Domain\Model\Dto\ExtensionConfigurationMailjet;
 
 class ExtensionManager {
 
   function statusSync() {
     require_once(ExtensionManagementUtility::extPath('mailjet', 'Resources/Private/Contrib/Mailjet/Mailjet.php'));
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
 
     $result_sting = '<div style="font-weight:bold !important;font-size:22px;"> Empty API key and Secrey key. </div>';
     $status_sender = '';
@@ -25,7 +26,7 @@ class ExtensionManager {
 
       $result_string = '<div style="font-weight:bold !important;color:red;font-size:20px;">Error</div><div style="font-size:20px;">Login Failed: Wrong user credentials! Check your API key and secret key!</div>';
 
-      $mailjetOptionsUpdater = GeneralUtility::makeInstance('Api\\Mailjet\\Domain\\Model\\Dto\\MailjetOptionsUpdater');
+      $mailjetOptionsUpdater = GeneralUtility::makeInstance(MailjetOptionsUpdater::class);
       $mailjetOptionsUpdater->saveConfiguration('sync_field', 'off');
 
       $mailjet = new Mailjet($settings['apiKeyMailjet'], $settings['secretKey']);
@@ -68,16 +69,16 @@ class ExtensionManager {
     }
 
 
-    $extensionConfigurationMailjet = GeneralUtility::makeInstance('Api\\Mailjet\\Domain\\Model\\Dto\\ExtensionConfigurationMailjet');
+    $extensionConfigurationMailjet = GeneralUtility::makeInstance(ExtensionConfigurationMailjet::class);
     $email_send = '';
 
     if (!empty($settings['email_to'])) {
       if (filter_var($settings['email_to'], FILTER_VALIDATE_EMAIL)) {
 
-        if ($settings['sync_field'] == 'on') {
+        if ($settings['sync_field'] === 'on') {
 
           // Create the message
-          $mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+          $mail = GeneralUtility::makeInstance(MailMessage::class);
 
           // Prepare and send the message
           $mail->setSubject('Mailjet test email')
@@ -107,7 +108,7 @@ class ExtensionManager {
   }
 
   function accountInfo() {
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
     $result_string = '<div style="font-size:20px;">No profile information is available at this time!</div>';
     if (!empty($settings['apiKeyMailjet']) && !empty($settings['secretKey'])) {
       $result_string = "<div style='font-weight:bold !important;font-size:16px !important;'>Your account data is not updated! Please enter your credentials and try again!</div>";

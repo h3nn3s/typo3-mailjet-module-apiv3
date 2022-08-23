@@ -2,8 +2,11 @@
 
 namespace Api\Mailjet\Domain\Model\Dto;
 
+use Api\Mailjet\Exception\ApiKeyMissingException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class MailjetOptionsUpdater {
 
@@ -11,11 +14,10 @@ class MailjetOptionsUpdater {
   protected $config_options;
 
   /** @var string */
-  //$ext_key=$_EXTKEY;
   protected $ext_key = 'mailjet';
 
   public function __construct() {
-    $this->config_options = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->ext_key]);
+    $this->config_options = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($this->ext_key);
   }
 
   /**
@@ -27,11 +29,11 @@ class MailjetOptionsUpdater {
 
     $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->ext_key] = serialize($this->config_options);
 
-    $extensionConfigurationMailjet = GeneralUtility::makeInstance('Api\\Mailjet\\Domain\\Model\\Dto\\ExtensionConfigurationMailjet');
+    $extensionConfigurationMailjet = GeneralUtility::makeInstance(ExtensionConfigurationMailjet::class);
 
     $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-    $configurationUtility = $objectManager->get(\TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility::class);
+    $configurationUtility = $objectManager->get(ConfigurationUtility::class);
     $newConfiguration = $configurationUtility->getCurrentConfiguration($this->ext_key);
     \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($newConfiguration,  $this->config_options);
     $configurationUtility->writeConfiguration(

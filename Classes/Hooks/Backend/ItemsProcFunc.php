@@ -3,7 +3,7 @@
 namespace Api\Mailjet\Hooks\Backend;
 
 use Api\Mailjet\Service\ApiService;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use DrewM\Mailjet\MailJet;
@@ -16,9 +16,9 @@ class ItemsProcFunc {
   protected $api_mailjet;
 
   public function __construct() {
-    $this->api = GeneralUtility::makeInstance('Api\\Mailjet\Service\ApiService');
+    $this->api = GeneralUtility::makeInstance(ApiService::class);
     require_once(ExtensionManagementUtility::extPath('mailjet', 'Resources/Private/Contrib/Mailjet/Mailjet.php'));
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
+    $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
 
     $this->api_mailjet = new Mailjet($settings['apiKeyMailjet'], $settings['secretKey']);
   }

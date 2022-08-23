@@ -2,19 +2,18 @@
 
 namespace Api\Mailjet\Controller;
 
-use Api\Mailjet\Domain\Model\Dto\ExtensionConfiguration;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use Api\Mailjet\Domain\Model\Dto\FormDto;
 use Api\Mailjet\Exception\GeneralException;
 use Api\Mailjet\Exception\MemberExistsException;
 use Api\Mailjet\Service\ApiService;
 use Api\Mailjet\ViewHelpers\TemplatesViewHelper;
-use TYPO3\CMS\About\Domain\Model\Extension;
-use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use DrewM\Mailjet\MailJet;
-use TYPO3Fluid\Fluid\View\TemplateView;
 use Api\Mailjet\Service\DefaultMessagesService;
 
 
@@ -30,12 +29,12 @@ class FormController extends ActionController {
     private $settings_keys;
 
     public function initializeAction() {
-        $this->settings_keys = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailjet']);
-        $this->registrationService = GeneralUtility::makeInstance('Api\\Mailjet\\Service\\ApiService');
+        $this->settings_keys = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mailjet');
+        $this->registrationService = GeneralUtility::makeInstance(ApiService::class);
     }
 
     /**
-     * @dontvalidate $form
+     * @Extbase\IgnoreValidation("form")
      */
     public function indexAction(FormDto $form = NULL) {
         $message = null;
@@ -237,7 +236,7 @@ class FormController extends ActionController {
                     }
                 } else {
                     // Create the message
-                    $mail = GeneralUtility::makeInstance('TYPO3\CMS\Core\Mail\MailMessage');
+                    $mail = GeneralUtility::makeInstance(MailMessage::class);
                     // Prepare and send the message
                     $mail->setSubject('Please confirm your subscription')
                         ->setFrom($this->settings_keys['sender'])
@@ -304,7 +303,7 @@ class FormController extends ActionController {
     {
         if (is_null($form)) {
             /** @var FormDto $form */
-            $form = GeneralUtility::makeInstance('Api\\Mailjet\\Domain\\Model\\Dto\\FormDto');
+            $form = GeneralUtility::makeInstance(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);

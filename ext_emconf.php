@@ -7,18 +7,14 @@ $EM_CONF[$_EXTKEY] = [
   'author' => 'Mailjet',
   'author_email' => 'plugins@mailjet.com',
   'state' => 'stable',
-  'internal' => '',
-  'uploadfolder' => '1',
-  'createDirs' => '',
-  'clearCacheOnLoad' => 0,
-  'version' => '1.0.5',
+  'version' => '2.0.0',
   'constraints' => [
     'depends' => [
-      'typo3' => '7.6.0-10.9.99',
+      'typo3' => '10.4.0-11.5.99',
     ],
     'conflicts' => [],
     'suggests' => [
-      'typoscript_rendering' => '1.0.5-1.99.999',
+      'typoscript_rendering' => '2.4.0-2.99.999',
     ],
   ],
 ];
