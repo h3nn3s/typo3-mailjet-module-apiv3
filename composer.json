@@ -1,5 +1,5 @@
 {
-    "name": "mailjet",
+    "name": "api/mailjet",
     "type": "typo3-cms-extension",
     "version": "2.0.0",
     "description": "Mailjet integration to let users subscribe to a specific list.",

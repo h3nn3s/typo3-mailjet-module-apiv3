@@ -33,7 +33,7 @@ if ($settings['Send'] == 1 && $settings['sync_field'] === 'on') {
 
 }
 else {
-  $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = 'mail';
+  $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = 'sendmail';
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(

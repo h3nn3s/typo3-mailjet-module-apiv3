@@ -5,3 +5,9 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['mailjet_
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['mailjet_registration'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('mailjet_registration',
   'FILE:EXT:mailjet/Configuration/FlexForms/flexform_mailjet.xml');
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'Mailjet',
+    'Registration',
+    'Mailjet'
+);

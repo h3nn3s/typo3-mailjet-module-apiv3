@@ -1,9 +1,9 @@
-# Mailjet API extension for Typo3
+# Mailjet API extension for TYPO3
 
 ## Requirements
 
-- TYPO3 CMS 7.6 - 10
-- PHP 5.4 - 7.4
+- TYPO3 CMS 10 - 11
+- PHP 7.2 - 8.1
 - Mailjet API key and Secret key
 - License: GPL 2
 

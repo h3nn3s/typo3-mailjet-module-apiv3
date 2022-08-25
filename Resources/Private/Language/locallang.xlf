@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:mailjet/Resources/Private/Language/locallang.xlf" date="2022-08-24T05:14:45Z" product-name="mailjet">
+		<header/>
+		<body>
+			<trans-unit id="plugin.title" resname="plugin.title" >
+				<source>Mailjet</source>
+			</trans-unit>
+			<trans-unit id="flexform.subformconf" resname="flexform.subformconf" >
+				<source>Subscription form configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.confirmationemals" resname="flexform.confirmationemals" >
+				<source>Confirmation email customization</source>
+			</trans-unit>
+			<trans-unit id="flexform.messageserrors" resname="flexform.messageserrors" >
+				<source>Messages and errors</source>
+			</trans-unit>
+			<trans-unit id="plugin.description" resname="plugin.description" xml:space="preserve">
+				<source>Create and edit a form to let users subscribe to a specific Mailjet
+                list.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.title" resname="flexform.title" >
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="flexform.list" resname="flexform.list" xml:space="preserve">
+				<source>Mailjet contact list - Select a contact list where all new subscribers will be
+                added. You can create additional contact lists in your Mailjet account.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.prop" resname="flexform.prop" xml:space="preserve">
+				<source>Contact properties - Select up to 3 contact properties to be shown in your
+                subscription form.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.prop1" resname="flexform.prop1" >
+				<source>Label for the first contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.prop2" resname="flexform.prop2" >
+				<source>Label for the second contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.prop3" resname="flexform.prop3" >
+				<source>Label for the third contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.prop1desc" resname="flexform.prop1desc" >
+				<source>Description for the first contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.prop2desc" resname="flexform.prop2desc" >
+				<source>Description for the second contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.prop3desc" resname="flexform.prop3desc" >
+				<source>Description for the third contact property in the form</source>
+			</trans-unit>
+			<trans-unit id="flexform.placeholder" resname="flexform.placeholder" >
+				<source>example@domain.com</source>
+			</trans-unit>
+			<trans-unit id="flexform.description" resname="flexform.description" >
+				<source>Form description</source>
+			</trans-unit>
+			<trans-unit id="flexform.submitLabel" resname="flexform.submitLabel" >
+				<source>Submit Button label</source>
+			</trans-unit>
+			<trans-unit id="flexform.headingText" resname="flexform.headingText" >
+				<source>Email Heading text</source>
+			</trans-unit>
+			<trans-unit id="flexform.bodyText" resname="flexform.bodyText" >
+				<source>Email Body text</source>
+			</trans-unit>
+			<trans-unit id="flexform.confButton" resname="flexform.confButton" xml:space="preserve">
+				<source>Email Confirmation Button text - This is the text of the button inside the
+                subscription confirmation email.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.emailFooterMail" resname="flexform.emailFooterMail" >
+				<source>Email Footer text</source>
+			</trans-unit>
+			<trans-unit id="flexform.thanks" resname="flexform.thanks" >
+				<source>Thanks,</source>
+			</trans-unit>
+			<trans-unit id="flexform.owner" resname="flexform.owner" xml:space="preserve">
+				<source>Owner - Site owner name, shown at the end of the subscription confirmation
+                email.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.confMessage" resname="flexform.confMessage" xml:space="preserve">
+				<source>Confirmation Message - Default: Subscription confirmation email sent to
+                %email. Please check your inbox and confirm the subscription. (Note: The '%email' symbol will be
+                replaced by the email address of the subscriber)
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.dataTypeMessage" resname="flexform.dataTypeMessage" xml:space="preserve">
+				<source>Data type mismatch - Default: Please enter correct values according to
+                the example in the field: %id. (Note: The %id symbol will be replaced by the name of
+                field and the %type symbol will be replaced by the type of data required by the field)
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.subscribeError" resname="flexform.subscribeError" xml:space="preserve">
+				<source>Subscription error. Please try again later! - Message shown in case 
+                an error occurs during subscription form submission.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.memberExist" resname="flexform.memberExist" xml:space="preserve">
+				<source>The contact %email is already subscribed - Message shown in case the
+                subscriber already exists in your Mailjet contact list. (Note: The %email symbol will be replaced by the email
+                address of the subscriber)
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.finalMessage" resname="flexform.finalMessage" xml:space="preserve">
+				<source>Thanks for subscribing - Message shown in case the subscriber 
+                is successfully added to the contact list.
+            </source>
+			</trans-unit>
+			<trans-unit id="flexform.email" resname="flexform.email" >
+				<source>Email field label</source>
+			</trans-unit>
+			<trans-unit id="flexform.emailSender" resname="flexform.emailSender" xml:space="preserve">
+				<source>* Email FROM address - This is a required field! This is the email address used to send 
+                the confirmation email to the subscriber! Use one of your validated sender email addresses from your Mailjet account. 
+                If the field is empty the subscriber will not receive the confirmation email and will not be able to subscribe!
+            </source>
+			</trans-unit>
+			<trans-unit id="field.email" resname="field.email" >
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="field.firstName" resname="field.firstName" >
+				<source>First name</source>
+			</trans-unit>
+			<trans-unit id="field.lastName" resname="field.lastName" >
+				<source>Last name</source>
+			</trans-unit>
+			<trans-unit id="field.interests" resname="field.interests" >
+				<source>Interests</source>
+			</trans-unit>
+			<trans-unit id="error.memberExists" resname="error.memberExists" >
+				<source>This email address is already subscribed!</source>
+			</trans-unit>
+			<trans-unit id="error.general" resname="error.general" >
+				<source>A general error occurred, sorry!</source>
+			</trans-unit>
+			<trans-unit id="error.form.email.1221560718" resname="error.form.email.1221560718" >
+				<source>Please provide an email address!</source>
+			</trans-unit>
+			<trans-unit id="error.form.email.1221559976" resname="error.form.email.1221559976" >
+				<source>The provided email address is invalid!</source>
+			</trans-unit>
+			<trans-unit id="success.title" resname="success.title" >
+				<source>You have successfully registered!</source>
+			</trans-unit>
+			<trans-unit id="success.description" resname="success.description" >
+				<source>Please check your inbox to confirm your subscription!</source>
+			</trans-unit>
+			<trans-unit id="form.submit" resname="form.submit" >
+				<source>Submit</source>
+			</trans-unit>
+			<trans-unit id="memberCount" resname="memberCount" >
+				<source>Count of members</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

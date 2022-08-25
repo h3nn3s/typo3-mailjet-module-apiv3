@@ -34,7 +34,7 @@
                             <label>LLL:EXT:mailjet/Resources/Private/Language/locallang.xml:flexform.prop</label>
                             <config>
                                 <type>select</type>
-                                <renderType>selectSingle</renderType>
+                                <renderType>selectSingleBox</renderType>
                                 <itemsProcFunc>Api\Mailjet\Hooks\Backend\ItemsProcFunc->getProperties</itemsProcFunc>
                                 <items>
                                     <numIndex index="1">

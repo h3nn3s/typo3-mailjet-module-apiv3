@@ -17,8 +17,6 @@ use DrewM\Mailjet\MailJet;
 use Api\Mailjet\Service\DefaultMessagesService;
 
 
-
-
 class FormController extends ActionController {
 
     /** @var ApiService $service */
@@ -236,12 +234,13 @@ class FormController extends ActionController {
                     }
                 } else {
                     // Create the message
+                    /** @var $mail MailMessage */
                     $mail = GeneralUtility::makeInstance(MailMessage::class);
                     // Prepare and send the message
                     $mail->setSubject('Please confirm your subscription')
-                        ->setFrom($this->settings_keys['sender'])
+                        ->setFrom([$this->settings_keys['sender'] => $this->settings_keys['sender']])
                         ->setTo($form->getEmail())
-                        ->setBody($templateRendition)
+                        ->html($templateRendition)
                         ->send();
                     $message = $confirmMessage;
                 }

@@ -4,7 +4,7 @@
  * THe class has a lot methods for custom type USER implementations for ext_conf_template.txt file.
  */
 
-namespace Mailjet\Ext;
+namespace Api\Mailjet\Utility;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Mail\MailMessage;
@@ -37,7 +37,7 @@ class ExtensionManager {
       $response = $mailjet->myprofile($paramsProfile)->getResponse();
 
       if (!empty($response)) {
-        $result_string = '<div style="font-weight:bold !important;color:green;font-size:20px;">OK</div><div style="font-size:20px;">Your creadintials are correct!</div>';
+        $result_string = '<div style="font-weight:bold !important;color:green;font-size:20px;">OK</div><div style="font-size:20px;">Your credentials are correct!</div>';
 
         if (!empty($settings['sender'])) {
           $params = [
@@ -84,7 +84,7 @@ class ExtensionManager {
           $mail->setSubject('Mailjet test email')
             ->setFrom([$settings['sender']])
             ->setTo([$settings['email_to']])
-            ->setBody('Your configuration is OK!')
+            ->text('Your configuration is OK!')
             ->send();
           $mailjetOptionsUpdater->saveConfiguration('email_to', '');
           $email_send = '<div style="font-size:20px;">Test email sent successfully!</div>';
@@ -102,7 +102,7 @@ class ExtensionManager {
 
 
   function apiDescription() {
-    $result_string = "<div><strong>Welcome to the Mailjet Configuration page. If you are new to Mailjet, please <a style='text-decoration: underline;' href='https://app.mailjet.com/signup?p=typo3' target='_blank'>create an account</a>.</strong><br /> Should you already have a pre-existing Mailjet account, you can find your API Key and Secret Key <a style='text-decoration: underline;' href='https://app.mailjet.com/account/api_keys' target='_blank'>here</a>.</div>";
+    $result_string = "<div><strong>Welcome to the Mailjet Configuration page. If you are new to Mailjet, please <a style='text-decoration: underline;' href='https://app.mailjet.com/signup?p=typo3' target='_blank'>create an account</a>.</strong><br /> Should you already have a pre-existing Mailjet account, you can find your API Key and Secret Key <a style='text-decoration: underline;' href='https://app.mailjet.com/account/apikeys' target='_blank'>here</a>.</div>";
 
     return $result_string;
   }
