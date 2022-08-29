@@ -59,7 +59,7 @@ if (TYPO3_MODE === 'BE') {
 
 
   // Page module hook
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['mailjet' . '_registration']['mailjet'] =
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['mailjet_registration']['mailjet'] =
     'Api\Mailjet\Hooks\Backend\PageLayoutViewHook->getExtensionSummary';
 
 

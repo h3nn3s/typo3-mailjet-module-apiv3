@@ -3,10 +3,24 @@
 <f:layout name="General"/>
 
 <f:section name="content">
+    <f:if condition="{subscriptionMessage}">
+        <f:then>
+            <p class="mj-success">{subscriptionMessage}</p>
+        </f:then>
+        <f:else>
+            <f:render section="form" arguments="{_all}" />
+        </f:else>
+    </f:if>
+    <f:debug>{_all}</f:debug>
+</f:section>
+
+<f:section name="formUrl">
+
+</f:section>
+
+<f:section name="form">
     <f:form object="{form}" action="response" name="form" id="mailjet-form" class="form-horizontal"
             data="{url:'{f:render(section:\'formUrl\') -> f:spaceless() -> f:format.htmlentitiesDecode()}'}">
-
-
         <f:if condition="{description}">
             <p>{description}</p>
         </f:if>
@@ -112,10 +126,6 @@
             </f:for>
         </f:if>
 
-        <f:if condition="{subscriptionMessage}">
-            <p class="mj-success">{subscriptionMessage}</p>
-        </f:if>
-
         <f:if condition="{submitLabel}">
             <f:then>
                 <div class="form-group">
@@ -134,8 +144,4 @@
         </mc:footerData>
 
     </f:form>
-</f:section>
-
-<f:section name="formUrl">
-
 </f:section>

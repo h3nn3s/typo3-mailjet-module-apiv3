@@ -2,11 +2,11 @@
 
 namespace Api\Mailjet\Domain\Model\Dto;
 
-use Api\Mailjet\Exception\ApiKeyMissingException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class MailjetOptionsUpdater {
 
@@ -20,26 +20,21 @@ class MailjetOptionsUpdater {
     $this->config_options = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($this->ext_key);
   }
 
-  /**
-   * @return string
-   * @throws ApiKeyMissingException
-   */
-  public function saveConfiguration($key, $value) {
+    /**
+     * @param string $key Extension configuration key
+     * @param string $value Value for configuration key
+     * @return void
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     * @throws ExtensionConfigurationPathDoesNotExistException
+     */
+  public function saveConfiguration($key, $value): void
+  {
     $this->config_options[$key] = $value;
 
-    $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->ext_key] = serialize($this->config_options);
-
-    $extensionConfigurationMailjet = GeneralUtility::makeInstance(ExtensionConfigurationMailjet::class);
-
-    $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-    $configurationUtility = $objectManager->get(ConfigurationUtility::class);
-    $newConfiguration = $configurationUtility->getCurrentConfiguration($this->ext_key);
-    \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($newConfiguration,  $this->config_options);
-    $configurationUtility->writeConfiguration(
-      $configurationUtility->convertValuedToNestedConfiguration($newConfiguration),
-      $this->ext_key
-    );
+    $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+    $newConfiguration = $extensionConfiguration->get($this->ext_key);
+    ArrayUtility::mergeRecursiveWithOverrule($newConfiguration,  $this->config_options);
+    $extensionConfiguration->set($this->ext_key, $newConfiguration);
   }
 
 }

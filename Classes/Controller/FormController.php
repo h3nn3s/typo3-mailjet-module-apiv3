@@ -15,6 +15,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use DrewM\Mailjet\MailJet;
 use Api\Mailjet\Service\DefaultMessagesService;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 
 
 class FormController extends ActionController {
@@ -34,12 +35,13 @@ class FormController extends ActionController {
     /**
      * @Extbase\IgnoreValidation("form")
      */
-    public function indexAction(FormDto $form = NULL) {
+    public function indexAction(FormDto $form = null)
+    {
         $message = null;
         if (!empty($_GET['list']) && !empty($_GET['mj'])) {
             $list_id = $_GET['list'];
             $contact_data = json_decode(base64_decode($_GET['mj']));
-            if ($contact_data){
+            if ($contact_data) {
                 $message = $this->confirmSubscription($list_id, $contact_data);
             }
         }
@@ -47,17 +49,19 @@ class FormController extends ActionController {
     }
 
     /**
-     * @param FormDto $form
+     * @param FormDto|null $form
+     * @throws StopActionException
      */
-    public function responseAction(FormDto $form = NULL) {
+    public function responseAction(FormDto $form = null)
+    {
         if (is_null($form)) {
-            $this->redirect('index');
+            $this->forward('index', null, null, [$_GET]);
         }
         $validation = $this->validDataReg($form);
 
-        if ($validation['has_error']){
+        if ($validation['has_error']) {
             $this->view->assignMultiple($this->formatParamsArray($form, $this->settings, $validation['error_msg']));
-        }else {
+        } else {
             $this->handleRegistration($form, $validation['contact_params']);
         }
     }
