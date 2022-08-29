@@ -3,7 +3,6 @@
 namespace Api\Mailjet\Hooks\Backend;
 
 use Api\Mailjet\Service\ApiService;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PageLayoutViewHook {
@@ -20,7 +19,7 @@ class PageLayoutViewHook {
    *
    * @var string
    */
-  const LLPATH = 'LLL:EXT:mailjet/Resources/Private/Language/locallang.xml:';
+  const LLPATH = 'LLL:EXT:mailjet/Resources/Private/Language/locallang.xlf:';
 
   /**
    * Table information
@@ -34,15 +33,10 @@ class PageLayoutViewHook {
    */
   protected $flexformData = [];
 
-  /** @var  DatabaseConnection */
-  protected $databaseConnection;
-
   /** @var ApiService */
   protected $api;
 
   public function __construct() {
-    /** @var DatabaseConnection databaseConnection */
-    $this->databaseConnection = $GLOBALS['TYPO3_DB'];
     $this->api = GeneralUtility::makeInstance(ApiService::class);
   }
 
