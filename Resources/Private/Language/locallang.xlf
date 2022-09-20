@@ -16,9 +16,8 @@
 				<source>Messages and errors</source>
 			</trans-unit>
 			<trans-unit id="plugin.description" resname="plugin.description" xml:space="preserve">
-				<source>Create and edit a form to let users subscribe to a specific Mailjet
-                list.
-            </source>
+				<source>Create and edit a form to let users subscribe to a specific Mailjet list.
+			</source>
 			</trans-unit>
 			<trans-unit id="flexform.title" resname="flexform.title" >
 				<source>Title</source>
