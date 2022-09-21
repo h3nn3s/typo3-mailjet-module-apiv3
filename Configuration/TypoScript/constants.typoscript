@@ -1,0 +1,12 @@
+plugin.tx_mailjet {
+	view {
+		# cat=tx_mailjet/file; type=string; label= Path to template root (FE)
+		templateRootPath = EXT:mailjet/Resources/Private/Templates/
+
+		# cat=tx_mailjet/file; type=string; label= Path to template partials (FE)
+		partialRootPath = EXT:mailjet/Resources/Private/Partials/
+
+		# cat=tx_mailjet/file; type=string; label= Path to template layouts (FE)
+		layoutRootPath = EXT:mailjet/Resources/Private/Layouts/
+	}
+}

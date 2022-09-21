@@ -1,7 +1,7 @@
 mod.wizards.newContentElement.wizardItems.forms {
 	elements {
 		mailjet {
-			icon = ../typo3conf/ext/mailjet/ext_icon.png
+			icon = EXT:mailjet/Resources/Public/Icons/Extension.png
 			iconIdentifier = ext-mailjet-wizard-icon
 			title = LLL:EXT:mailjet/Resources/Private/Language/locallang.xml:plugin.title
 			description = LLL:EXT:mailjet/Resources/Private/Language/locallang.xml:plugin.description

@@ -1,0 +1,16 @@
+plugin.tx_mailjet {
+	view {
+		templateRootPaths {
+			0 = EXT:mailjet/Resources/Private/Templates/
+			1 = {$plugin.tx_mailjet.view.templateRootPath}
+		}
+		partialRootPaths {
+			0 = EXT:mailjet/Resources/Private/Partials/
+			1 = {$plugin.tx_mailjet.view.templateRootPath}
+		}
+		layoutRootPaths {
+			0 = EXT:mailjet/Resources/Private/Layouts/
+			1 = {$plugin.tx_mailjet.view.templateRootPath}
+		}
+	}
+}
