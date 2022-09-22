@@ -25,38 +25,44 @@
         </f:if>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">{email}</label>
+            <label class="col-sm-3 control-label" for="mailjet-{listId}-email">{email}</label>
             <div class="col-sm-9">
-                <f:form.textfield property="email" type="email" class="form-control" required="1"/>
+                <f:form.textfield property="email" id="mailjet-{listId}-email" type="email" class="form-control" required="1"/>
             </div>
         </div>
 
         <f:if condition="{contact_prop1}">
             <div class="form-group">
-                <label class="col-sm-3 control-label">{prop1}</label>
+                <label class="col-sm-3 control-label" for="mailjet-{listId}-prop1">{prop1}</label>
                 <div class="col-sm-9">
-                    <f:form.textfield property="prop1" type="text" class="form-control" required="1"/>
-                    <label style="margin-bottom:15px;" class="col-sm-3 control-label">{prop1descpr}</label>
+                    <f:form.textfield property="prop1" id="mailjet-{listId}-prop1" type="text" class="form-control" required="1"/>
+                    <f:if condition="{prop1descpr}">
+                        <small>{prop1descpr}</small>
+                    </f:if>
                 </div>
             </div>
         </f:if>
 
         <f:if condition="{contact_prop2}">
             <div class="form-group">
-                <label class="col-sm-3 control-label">{prop2}</label>
+                <label class="col-sm-3 control-label" for="mailjet-{listId}-prop2">{prop2}</label>
                 <div class="col-sm-9">
-                    <f:form.textfield property="prop2" type="text" class="form-control" required="1"/>
-                    <label  style="margin-bottom:15px;" class="col-sm-3 control-label">{prop2descpr}</label>
+                    <f:form.textfield property="prop2" id="mailjet-{listId}-prop2" type="text" class="form-control" required="1"/>
+                    <f:if condition="{prop2descpr}">
+                        <small>{prop2descpr}</small>
+                    </f:if>
                 </div>
             </div>
         </f:if>
 
         <f:if condition="{contact_prop3}">
             <div class="form-group">
-                <label class="col-sm-3 control-label">{prop3}</label>
+                <label class="col-sm-3 control-label" for="mailjet-{listId}-prop3">{prop3}</label>
                 <div class="col-sm-9">
-                    <f:form.textfield property="prop3" type="text" class="form-control" required="1"/>
-                    <label  style="margin-bottom:15px;" class="col-sm-3 control-label">{prop3descpr}</label>
+                    <f:form.textfield property="prop3" id="mailjet-{listId}-prop3" type="text" class="form-control" required="1"/>
+                    <f:if condition="{prop3descpr}">
+                        <small>{prop3descpr}</small>
+                    </f:if>
                 </div>
             </div>
         </f:if>
