@@ -224,7 +224,7 @@ class FormController extends ActionController {
                         $mail->Port = $smtpPort;
                         $mail->setFrom($this->settings_keys['sender']);
                         $mail->addAddress($form->getEmail());
-                        $mail->Subject = "Please confirm your subscription";
+                        $mail->Subject = "Bitte bestaetigen Sie Ihre E-Mail-Adresse";
                         if (!empty($this->settings_keys['allowHtml']) && $this->settings_keys['allowHtml'] == 1) {
                             $mail->IsHTML(TRUE);
                         }
@@ -241,7 +241,7 @@ class FormController extends ActionController {
                     /** @var $mail MailMessage */
                     $mail = GeneralUtility::makeInstance(MailMessage::class);
                     // Prepare and send the message
-                    $mail->setSubject('Please confirm your subscription')
+                    $mail->setSubject('Bitte bestätigen Sie Ihre E-Mail-Adresse')
                         ->setFrom([$this->settings_keys['sender'] => $this->settings_keys['sender']])
                         ->setTo($form->getEmail())
                         ->html($templateRendition)

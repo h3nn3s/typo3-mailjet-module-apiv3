@@ -10,25 +10,25 @@ class DefaultMessagesService
 {
     private $form;
 
-    private $confMessage = 'Subscription confirmation email sent to %email. Please check your inbox and confirm the subscription.';
+    private $confMessage = 'Die Anmeldebestätigung wurde an %email gesendet. Bitte schauen Sie in Ihrem Postfach nach und bestätigen die Anmeldung.';
 
-    private $subscribeError = 'Subscription error. Please try again later!';
+    private $subscribeError = 'Fehler! Bitte versuchen Sie es später erneut.';
 
-    private static $memberExist = 'The contact %email is already subscribed!';
+    private static $memberExist = 'Die Adresse %email ist bereits registriert';
 
-    private $thanksMessage = 'Thanks for subscribing!';
+    private $thanksMessage = 'Vielen Dank für Ihre Anmeldung!';
 
-    private $headingText = 'Please confirm your subscription to';
+    private $headingText = 'Bitte bestätigen Sie Ihre Anmeldung zu';
 
-    private $emailFooterMsg = 'Did not ask to subscribe to this list? Or maybe you have changed your mind? Then simply ignore this email and you will not be subscribed.';
+    private $emailFooterMsg = 'Haben Sie nicht darum gebeten, diese Liste zu abonnieren? Oder haben Sie Ihre Meinung geändert? Dann ignorieren Sie diese E-Mail einfach und Sie werden nicht abonniert.';
 
-    private $confirmationBtnText = 'Click here to confirm';
+    private $confirmationBtnText = 'Hier klicken zum Bestätigen';
 
-    private $bodyMessage = 'You may copy/paste this link into your browser:';
+    private $bodyMessage = 'Bitte bestätigen Sie mit einem Klick:';
 
-    private $owner = 'Mailjet';
+    private $owner = 'RhönSprudel';
 
-    private static $successMessage = 'You have successfully subscribed!';
+    private static $successMessage = 'Sie haben sich erfolgreich angemeldet.';
 
     private static $dataTypeMessage = 'Please enter the correct values according to the example in the field: %id.';
 
