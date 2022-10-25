@@ -32,9 +32,6 @@ if ($settings['Send'] == 1 && $settings['sync_field'] === 'on') {
   $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport_smtp_password'] = $settings['secretKey'];
 
 }
-else {
-  $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = 'sendmail';
-}
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
   'Mailjet',
